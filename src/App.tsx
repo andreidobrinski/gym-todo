@@ -1,14 +1,21 @@
 import React from 'react';
+import styled from 'styled-components';
 import { AddItem } from './AddItem';
 import { TodoList } from './TodoList';
 
-const App = () => {
+export const App = () => {
   return (
-    <div>
+    <Wrap>
       <TodoList />
       <AddItem />
-    </div>
+    </Wrap>
   );
 };
 
-export default App;
+const Wrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: auto;
+  padding: 16px;
+`;

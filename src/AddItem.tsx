@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
+import styled from 'styled-components';
 import { TodosContext } from './TodosContext';
 import { ITodo } from './ITodo';
 
@@ -20,13 +21,13 @@ export const AddItem = () => {
 
   if (!adding)
     return (
-      <button type="button" onClick={() => setAdding(true)}>
-        Add Todo
-      </button>
+      <Wrap>
+        <Button onClick={() => setAdding(true)}>Add Todo</Button>
+      </Wrap>
     );
 
   return (
-    <>
+    <Wrap>
       <input
         value={value}
         onChange={(e) => setValue(e.target.value)}
@@ -35,17 +36,28 @@ export const AddItem = () => {
       {error ? (
         <div>todo already exists</div>
       ) : (
-        <button
-          type="button"
+        <Button
           onClick={() => {
             addTodo(value);
             setValue('');
             setAdding(false);
           }}
+          disabled={value === ''}
         >
           Add
-        </button>
+        </Button>
       )}
-    </>
+    </Wrap>
   );
 };
+
+const Wrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-right: auto;
+  margin-top: 16px;
+`;
+
+const Button = styled.button.attrs(() => ({
+  type: 'button',
+}))``;
