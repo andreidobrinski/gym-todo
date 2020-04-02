@@ -38,7 +38,7 @@ export const TodosContextProvider = ({ children }: TodosContextProps) => {
   }, []);
 
   const addTodo = useCallback(
-    (id) => {
+    (id: string) => {
       const newTodos = [...todos, { title: id, complete: false }];
       setTodos(newTodos);
       store.set('todos', newTodos);
@@ -47,7 +47,7 @@ export const TodosContextProvider = ({ children }: TodosContextProps) => {
   );
 
   const deleteTodo = useCallback(
-    (id) => {
+    (id: string) => {
       const newTodos = todos.filter((todo: ITodo) => todo.title !== id);
       setTodos(newTodos);
       store.set('todos', newTodos);
