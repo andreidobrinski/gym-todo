@@ -4,7 +4,7 @@ import { TodosContext } from './TodosContext';
 import { ITodo } from './ITodo';
 
 export const AddItem = () => {
-  const { todos, setTodos } = useContext(TodosContext);
+  const { todos, addTodo } = useContext(TodosContext);
   const [value, setValue] = useState('');
   const [adding, setAdding] = useState(false);
   const [error, setError] = useState(false);
@@ -39,11 +39,9 @@ export const AddItem = () => {
         <button
           type="button"
           onClick={() => {
-            const newTodos = [...todos, { title: value, complete: false }];
-            setTodos(newTodos);
+            addTodo(value);
             setValue('');
             setAdding(false);
-            store.set('todos', newTodos);
           }}
         >
           Add

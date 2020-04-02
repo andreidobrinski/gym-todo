@@ -17,6 +17,7 @@ interface TodosValue {
   setTodos: Function;
   selectedTodo: string;
   setSelectedTodo: Function;
+  addTodo: Function;
   deleteTodo: Function;
 }
 
@@ -36,6 +37,15 @@ export const TodosContextProvider = ({ children }: TodosContextProps) => {
     // eslint-disable-next-line
   }, []);
 
+  const addTodo = useCallback(
+    (id) => {
+      const newTodos = [...todos, { title: id, complete: false }];
+      setTodos(newTodos);
+      store.set('todos', newTodos);
+    },
+    [todos]
+  );
+
   const deleteTodo = useCallback(
     (id) => {
       const newTodos = todos.filter((todo: ITodo) => todo.title !== id);
@@ -51,9 +61,10 @@ export const TodosContextProvider = ({ children }: TodosContextProps) => {
       setTodos,
       selectedTodo,
       setSelectedTodo,
+      addTodo,
       deleteTodo,
     };
-  }, [todos, selectedTodo, deleteTodo]);
+  }, [todos, selectedTodo, addTodo, deleteTodo]);
 
   return (
     <TodosContext.Provider value={value}>{children}</TodosContext.Provider>
