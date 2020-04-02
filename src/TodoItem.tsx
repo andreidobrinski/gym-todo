@@ -1,9 +1,31 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { TodosContext } from './TodosContext';
+import { ITodo } from './ITodo';
 
 interface TodoItemProps {
-  name: string;
+  id: string;
 }
 
-export const TodoItem = ({ name }: TodoItemProps) => {
-  return <div>{name}</div>;
+export const TodoItem = ({ id }: TodoItemProps) => {
+  const { todos, selectedTodo, setSelectedTodo, deleteTodo } = useContext(
+    TodosContext
+  );
+
+  const todo = todos.find((item: ITodo) => item.title === id);
+  const isSelected = id === selectedTodo;
+
+  if (!todo) return null;
+
+  return (
+    <div>
+      <button onClick={() => setSelectedTodo(id)} type="button">
+        {todo.title}
+      </button>
+      {isSelected && (
+        <button onClick={() => deleteTodo(id)} type="button">
+          check
+        </button>
+      )}
+    </div>
+  );
 };

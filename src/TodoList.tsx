@@ -9,7 +9,7 @@ export const TodoList = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
       {todos.map((todo: ITodo) => (
-        <TodoItem name={todo.title} key={todo.title} />
+        <TodoItem id={todo.title} key={todo.title} />
       ))}
     </div>
   );
