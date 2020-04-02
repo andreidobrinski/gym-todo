@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from 'react';
-import store from 'store';
 import { TodosContext } from './TodosContext';
 import { ITodo } from './ITodo';
 
