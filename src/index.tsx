@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { TodosContextProvider } from './TodosContext';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <TodosContextProvider>
+      <App />
+    </TodosContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
