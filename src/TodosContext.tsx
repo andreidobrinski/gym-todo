@@ -1,4 +1,5 @@
-import React, { createContext, useMemo, useState } from 'react';
+import React, { createContext, useMemo, useState, useEffect } from 'react';
+import store from 'store';
 import { ITodo } from './ITodo';
 
 interface TodosContextProps {
@@ -12,10 +13,18 @@ interface TodosValue {
 
 export const TodosContext = createContext({} as TodosValue);
 
-const initialTodo = { title: 'hello', complete: false };
-
 export const TodosContextProvider = ({ children }: TodosContextProps) => {
-  const [todos, setTodos] = useState<ITodo[]>([initialTodo]);
+  const [todos, setTodos] = useState<ITodo[]>([]);
+
+  useEffect(() => {
+    const storeTodos = store.get('todos');
+    if (storeTodos) {
+      setTodos(storeTodos);
+    } else {
+      store.set('todos', todos);
+    }
+    // eslint-disable-next-line
+  }, []);
 
   const value: TodosValue = useMemo(() => {
     return {

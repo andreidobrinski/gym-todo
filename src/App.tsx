@@ -1,22 +1,11 @@
-import React, { useContext, useEffect } from 'react';
-import store from 'store';
+import React, { useContext } from 'react';
 import { TodoItem } from './TodoItem';
 import { AddItem } from './AddItem';
 import { TodosContext } from './TodosContext';
 import { ITodo } from './ITodo';
 
 const App = () => {
-  const { todos, setTodos } = useContext(TodosContext);
-
-  useEffect(() => {
-    const storeTodos = store.get('todos');
-    if (storeTodos) {
-      setTodos(storeTodos);
-    } else {
-      store.set('todos', todos);
-    }
-    // eslint-disable-next-line
-  }, []);
+  const { todos } = useContext(TodosContext);
 
   return (
     <div>
