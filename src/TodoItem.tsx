@@ -7,9 +7,13 @@ interface TodoItemProps {
 }
 
 export const TodoItem = ({ id }: TodoItemProps) => {
-  const { todos, selectedTodo, setSelectedTodo, deleteTodo } = useContext(
-    TodosContext
-  );
+  const {
+    todos,
+    selectedTodo,
+    setSelectedTodo,
+    deleteTodo,
+    completeTodo,
+  } = useContext(TodosContext);
 
   const todo = todos.find((item: ITodo) => item.title === id);
   const isSelected = id === selectedTodo;
@@ -22,9 +26,14 @@ export const TodoItem = ({ id }: TodoItemProps) => {
         {todo.title}
       </button>
       {isSelected && (
-        <button onClick={() => deleteTodo(id)} type="button">
-          check
-        </button>
+        <>
+          <button onClick={() => completeTodo(id)} type="button">
+            complete
+          </button>
+          <button onClick={() => deleteTodo(id)} type="button">
+            remove
+          </button>
+        </>
       )}
     </div>
   );

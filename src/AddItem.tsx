@@ -34,7 +34,7 @@ export const AddItem = () => {
         type="text"
       />
       {error ? (
-        <div>todo already exists</div>
+        <div>Todo already exists</div>
       ) : (
         <Button
           onClick={() => {
