@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import styled from 'styled-components';
 import { TodosContext } from './TodosContext';
 import { ITodo } from './ITodo';
 
@@ -12,23 +13,28 @@ export const TodoItem = ({ id }: TodoItemProps) => {
     selectedTodo,
     setSelectedTodo,
     deleteTodo,
-    completeTodo,
+    toggleTodo,
   } = useContext(TodosContext);
 
   const todo = todos.find((item: ITodo) => item.title === id);
-  const isSelected = id === selectedTodo;
 
   if (!todo) return null;
 
+  const isSelected = id === selectedTodo;
+  const isComplete = todo.complete;
+
   return (
     <div>
-      <button onClick={() => setSelectedTodo(id)} type="button">
+      <TodoButton
+        onClick={() => (isSelected ? setSelectedTodo('') : setSelectedTodo(id))}
+        isComplete={isComplete}
+      >
         {todo.title}
-      </button>
+      </TodoButton>
       {isSelected && (
         <>
-          <button onClick={() => completeTodo(id)} type="button">
-            complete
+          <button onClick={() => toggleTodo(id)} type="button">
+            {isComplete ? 'uncheck' : 'check'}
           </button>
           <button onClick={() => deleteTodo(id)} type="button">
             remove
@@ -38,3 +44,14 @@ export const TodoItem = ({ id }: TodoItemProps) => {
     </div>
   );
 };
+
+interface ITodoButton {
+  isComplete: boolean;
+}
+
+const TodoButton = styled.button.attrs(({ isComplete }: ITodoButton) => ({
+  type: 'button',
+  isComplete,
+}))`
+  text-decoration: ${(props) => props.isComplete && 'line-through'};
+`;

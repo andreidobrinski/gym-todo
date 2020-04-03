@@ -19,7 +19,7 @@ interface TodosValue {
   setSelectedTodo: Function;
   addTodo: Function;
   deleteTodo: Function;
-  completeTodo: Function;
+  toggleTodo: Function;
 }
 
 export const TodosContext = createContext({} as TodosValue);
@@ -27,6 +27,7 @@ export const TodosContext = createContext({} as TodosValue);
 export const TodosContextProvider = ({ children }: TodosContextProps) => {
   const [todos, setTodos] = useState<ITodo[]>([]);
   const [selectedTodo, setSelectedTodo] = useState('');
+  console.log('selectedTodo', selectedTodo);
 
   useEffect(() => {
     const storeTodos = store.get('todos');
@@ -47,13 +48,14 @@ export const TodosContextProvider = ({ children }: TodosContextProps) => {
     [todos]
   );
 
-  const completeTodo = useCallback(
+  const toggleTodo = useCallback(
     (id: string) => {
       const newTodos = todos.map((todo: ITodo) => {
         if (todo.title === id) {
+          const isCompleted = todo.complete;
           return {
             ...todo,
-            complete: true,
+            complete: !isCompleted,
           };
         }
         return todo;
@@ -80,10 +82,10 @@ export const TodosContextProvider = ({ children }: TodosContextProps) => {
       selectedTodo,
       setSelectedTodo,
       addTodo,
-      completeTodo,
+      toggleTodo,
       deleteTodo,
     };
-  }, [todos, selectedTodo, addTodo, completeTodo, deleteTodo]);
+  }, [todos, selectedTodo, addTodo, toggleTodo, deleteTodo]);
 
   return (
     <TodosContext.Provider value={value}>{children}</TodosContext.Provider>
