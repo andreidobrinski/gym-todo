@@ -27,7 +27,6 @@ export const TodosContext = createContext({} as TodosValue);
 export const TodosContextProvider = ({ children }: TodosContextProps) => {
   const [todos, setTodos] = useState<ITodo[]>([]);
   const [selectedTodo, setSelectedTodo] = useState('');
-  console.log('selectedTodo', selectedTodo);
 
   useEffect(() => {
     const storeTodos = store.get('todos');

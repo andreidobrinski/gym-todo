@@ -2,19 +2,14 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { TodosContext } from './TodosContext';
 import { ITodo } from './ITodo';
+import { EditTodo } from './EditTodo';
 
 interface TodoItemProps {
   id: string;
 }
 
 export const TodoItem = ({ id }: TodoItemProps) => {
-  const {
-    todos,
-    selectedTodo,
-    setSelectedTodo,
-    deleteTodo,
-    toggleTodo,
-  } = useContext(TodosContext);
+  const { todos, selectedTodo, setSelectedTodo } = useContext(TodosContext);
 
   const todo = todos.find((item: ITodo) => item.title === id);
 
@@ -32,14 +27,7 @@ export const TodoItem = ({ id }: TodoItemProps) => {
         {todo.title}
       </TodoButton>
       {isSelected && (
-        <>
-          <button onClick={() => toggleTodo(id)} type="button">
-            {isComplete ? 'uncheck' : 'check'}
-          </button>
-          <button onClick={() => deleteTodo(id)} type="button">
-            remove
-          </button>
-        </>
+        <EditTodo todo={todo} onClose={() => setSelectedTodo('')} />
       )}
     </div>
   );
@@ -53,5 +41,6 @@ const TodoButton = styled.button.attrs(({ isComplete }: ITodoButton) => ({
   type: 'button',
   isComplete,
 }))`
+  border: none;
   text-decoration: ${(props) => props.isComplete && 'line-through'};
 `;

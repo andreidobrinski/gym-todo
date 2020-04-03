@@ -47,6 +47,7 @@ export const AddItem = () => {
           Add
         </Button>
       )}
+      <Button onClick={() => setAdding(false)}>Cancel</Button>
     </Wrap>
   );
 };
