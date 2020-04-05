@@ -12,7 +12,7 @@ interface TodosContextProps {
   children: JSX.Element;
 }
 
-interface TodosValue {
+interface ITodosContext {
   todos: ITodo[];
   setTodos: Function;
   selectedTodo: string;
@@ -22,7 +22,7 @@ interface TodosValue {
   toggleTodo: Function;
 }
 
-export const TodosContext = createContext({} as TodosValue);
+export const TodosContext = createContext({} as ITodosContext);
 
 export const TodosContextProvider = ({ children }: TodosContextProps) => {
   const [todos, setTodos] = useState<ITodo[]>([]);
@@ -74,7 +74,7 @@ export const TodosContextProvider = ({ children }: TodosContextProps) => {
     [todos]
   );
 
-  const value: TodosValue = useMemo(() => {
+  const value: ITodosContext = useMemo(() => {
     return {
       todos,
       setTodos,
