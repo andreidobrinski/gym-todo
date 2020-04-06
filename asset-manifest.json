@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/gym-todo/static/css/main.95b1f7ab.chunk.css",
+    "main.js": "/gym-todo/static/js/main.aca7a076.chunk.js",
+    "main.js.map": "/gym-todo/static/js/main.aca7a076.chunk.js.map",
+    "runtime-main.js": "/gym-todo/static/js/runtime-main.52df5b97.js",
+    "runtime-main.js.map": "/gym-todo/static/js/runtime-main.52df5b97.js.map",
+    "static/js/2.9a30c5d2.chunk.js": "/gym-todo/static/js/2.9a30c5d2.chunk.js",
+    "static/js/2.9a30c5d2.chunk.js.map": "/gym-todo/static/js/2.9a30c5d2.chunk.js.map",
+    "index.html": "/gym-todo/index.html",
+    "precache-manifest.4b58c760fc1828075780dd31593a2e2a.js": "/gym-todo/precache-manifest.4b58c760fc1828075780dd31593a2e2a.js",
+    "service-worker.js": "/gym-todo/service-worker.js",
+    "static/css/main.95b1f7ab.chunk.css.map": "/gym-todo/static/css/main.95b1f7ab.chunk.css.map",
+    "static/js/2.9a30c5d2.chunk.js.LICENSE.txt": "/gym-todo/static/js/2.9a30c5d2.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.52df5b97.js",
+    "static/js/2.9a30c5d2.chunk.js",
+    "static/css/main.95b1f7ab.chunk.css",
+    "static/js/main.aca7a076.chunk.js"
+  ]
+}
