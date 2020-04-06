@@ -39,7 +39,8 @@ const Inner = styled.div`
 const Header = styled.div`
   display: flex;
   align-items: center;
+  margin-bottom: 16px;
   h1 {
-    margin-left: 16px;
+    margin: 0 0 0 16px;
   }
 `;
