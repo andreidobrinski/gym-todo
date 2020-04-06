@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
+import styled from 'styled-components';
 import { TodosContext } from './TodosContext';
 import { ITodo } from './ITodo';
+import { TrashIcon } from './assets/TrashIcon';
 
 interface EditTodoProps {
   todo: ITodo;
@@ -8,22 +10,20 @@ interface EditTodoProps {
 }
 
 export const EditTodo = ({ todo, onClose }: EditTodoProps) => {
-  const { toggleTodo, deleteTodo } = useContext(TodosContext);
+  const { deleteTodo } = useContext(TodosContext);
 
   return (
-    <div>
-      <button
-        onClick={() => {
-          toggleTodo(todo.title);
-          onClose();
-        }}
-        type="button"
-      >
-        {todo.complete ? 'uncheck' : 'check'}
-      </button>
+    <Wrap>
       <button onClick={() => deleteTodo(todo.title)} type="button">
-        remove
+        <TrashIcon />
       </button>
-    </div>
+    </Wrap>
   );
 };
+
+const Wrap = styled.div`
+  margin-left: 8px;
+  button {
+    width: 45px;
+  }
+`;

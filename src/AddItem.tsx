@@ -4,10 +4,18 @@ import { TodosContext } from './TodosContext';
 import { ITodo } from './ITodo';
 
 export const AddItem = () => {
-  const { todos, addTodo } = useContext(TodosContext);
+  const { todos, addTodo, selectedTodo, setSelectedTodo } = useContext(
+    TodosContext
+  );
   const [value, setValue] = useState('');
   const [adding, setAdding] = useState(false);
   const [error, setError] = useState(false);
+
+  useEffect(() => {
+    if (selectedTodo) {
+      setAdding(false);
+    }
+  }, [selectedTodo]);
 
   useEffect(() => {
     const duplicateTodo = todos.find((todo: ITodo) => todo.title === value);
@@ -22,7 +30,14 @@ export const AddItem = () => {
   if (!adding)
     return (
       <Wrap>
-        <Button onClick={() => setAdding(true)}>Add Todo</Button>
+        <Button
+          onClick={() => {
+            setAdding(true);
+            setSelectedTodo('');
+          }}
+        >
+          Add Todo
+        </Button>
       </Wrap>
     );
 
@@ -47,7 +62,9 @@ export const AddItem = () => {
           Add
         </Button>
       )}
-      <Button onClick={() => setAdding(false)}>Cancel</Button>
+      <Button onClick={() => setAdding(false)} cancel>
+        Cancel
+      </Button>
     </Wrap>
   );
 };
@@ -57,8 +74,28 @@ const Wrap = styled.div`
   flex-direction: column;
   margin-right: auto;
   margin-top: 16px;
+  input {
+    font-size: 18px;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid var(--bg);
+  }
 `;
 
-const Button = styled.button.attrs(() => ({
+interface IButton {
+  cancel: boolean;
+}
+
+const Button = styled.button.attrs(({ cancel }: IButton) => ({
   type: 'button',
-}))``;
+  cancel,
+}))`
+  padding: 8px 16px;
+  margin-top: 8px;
+  ${(props) =>
+    props.cancel &&
+    `
+      margin-top: 4px;
+      background-color: transparent;
+  `};
+`;
