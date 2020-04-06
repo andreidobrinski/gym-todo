@@ -39,7 +39,8 @@ const Inner = styled.main`
 const Header = styled.header`
   display: flex;
   align-items: center;
-  margin-bottom: 16px;
+  margin: auto auto 16px auto;
+  max-width: 600px;
   h1 {
     margin: 0 0 0 16px;
   }

@@ -33,6 +33,7 @@ export const TodoItem = ({ id }: TodoItemProps) => {
       <TodoButton
         onClick={() => (isSelected ? setSelectedTodo('') : setSelectedTodo(id))}
         isComplete={isComplete}
+        aria-label={`${id} ${isComplete ? 'complete' : 'incomplete'}`}
         aria-pressed={isSelected}
       >
         {todo.title}
