@@ -31,7 +31,11 @@ export const TodosContextProvider = ({ children }: TodosContextProps) => {
   useEffect(() => {
     const storeTodos = store.get('todos');
     if (storeTodos) {
-      setTodos(storeTodos);
+      const sortedTodos = [...storeTodos].sort((a: ITodo, b: ITodo) => {
+        if (a.complete === b.complete) return 0;
+        return a.complete ? 1 : -1;
+      });
+      setTodos(sortedTodos);
     } else {
       store.set('todos', todos);
     }
