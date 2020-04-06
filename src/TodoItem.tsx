@@ -23,12 +23,17 @@ export const TodoItem = ({ id }: TodoItemProps) => {
 
   return (
     <Wrap>
-      <CheckButton onClick={() => toggleTodo(id)}>
+      <CheckButton
+        onClick={() => toggleTodo(id)}
+        aria-label={`checkbox for ${id}`}
+        aria-pressed={isComplete}
+      >
         {isComplete && <CheckmarkIcon />}
       </CheckButton>
       <TodoButton
         onClick={() => (isSelected ? setSelectedTodo('') : setSelectedTodo(id))}
         isComplete={isComplete}
+        aria-pressed={isSelected}
       >
         {todo.title}
       </TodoButton>
@@ -39,7 +44,7 @@ export const TodoItem = ({ id }: TodoItemProps) => {
   );
 };
 
-const Wrap = styled.div`
+const Wrap = styled.li`
   display: flex;
   align-items: center;
   margin: 4px 0;

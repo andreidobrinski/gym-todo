@@ -47,6 +47,7 @@ export const AddItem = () => {
         value={value}
         onChange={(e) => setValue(e.target.value)}
         type="text"
+        aria-label="add new todo"
       />
       {error ? (
         <div>Todo already exists</div>
@@ -69,7 +70,7 @@ export const AddItem = () => {
   );
 };
 
-const Wrap = styled.div`
+const Wrap = styled.section`
   display: flex;
   flex-direction: column;
   margin-right: auto;

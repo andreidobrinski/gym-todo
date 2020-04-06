@@ -14,7 +14,11 @@ export const EditTodo = ({ todo, onClose }: EditTodoProps) => {
 
   return (
     <Wrap>
-      <button onClick={() => deleteTodo(todo.title)} type="button">
+      <button
+        onClick={() => deleteTodo(todo.title)}
+        type="button"
+        aria-label={`delete ${todo.title}`}
+      >
         <TrashIcon />
       </button>
     </Wrap>

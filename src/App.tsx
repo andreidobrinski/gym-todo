@@ -26,7 +26,7 @@ const Outer = styled.div`
   padding: 16px;
 `;
 
-const Inner = styled.div`
+const Inner = styled.main`
   display: flex;
   flex-direction: column;
   max-width: 600px;
@@ -36,7 +36,7 @@ const Inner = styled.div`
   background-color: var(--light-bg);
 `;
 
-const Header = styled.div`
+const Header = styled.header`
   display: flex;
   align-items: center;
   margin-bottom: 16px;
