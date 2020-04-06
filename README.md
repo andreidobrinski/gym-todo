@@ -4,7 +4,7 @@
 
 A todo app to help keep track of exercises to be done at the gym every week. A React/TypeScript rewrite of the [original app in Flutter](https://github.com/andreidobrinski/todo-flutter).
 
-[Demo]()
+[Demo](https://andreidobrinski.com/gym-todo/)
 
 ## Why?
 
