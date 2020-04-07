@@ -27,5 +27,5 @@ Also to practice TypeScript with React.
 
 - [x] Basic CRUD: add, delete, check/uncheck todos
 - [x] Persist todo list in local storage
-- [] Store date/time of completed tasks
-- [] Uncheck todo after a week of being completed
+- [x] Store date/time of completed tasks
+- [x] Uncheck todo after a week of being completed
