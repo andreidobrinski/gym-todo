@@ -40,6 +40,7 @@ const Wrap = styled.div`
   margin-left: 8px;
   button {
     width: 45px;
+    padding-top: 10px;
   }
   p {
     color: rgba(0, 0, 0, 0.75);
