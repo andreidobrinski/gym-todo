@@ -7,6 +7,7 @@ import React, {
 } from 'react';
 import store from 'store';
 import { ITodo } from './ITodo';
+import { getDiffDays } from './helper';
 
 interface TodosContextProps {
   children: JSX.Element;
@@ -35,12 +36,8 @@ export const TodosContextProvider = ({ children }: TodosContextProps) => {
     }
     const completedTodos = storeTodos.map((todo: ITodo) => {
       if (!todo.dateCompleted) return todo;
-      const currentDate = new Date().getTime();
-      const millisecondDay = 24 * 60 * 60 * 1000;
-      const completedDate = new Date(todo.dateCompleted).getTime();
-      const diffDays = Math.round(
-        Math.abs(completedDate - currentDate) / millisecondDay
-      );
+      const diffDays = getDiffDays(new Date(todo.dateCompleted).getTime());
+
       if (diffDays >= 7)
         return {
           ...todo,
