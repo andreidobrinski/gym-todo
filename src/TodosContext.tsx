@@ -30,21 +30,42 @@ export const TodosContextProvider = ({ children }: TodosContextProps) => {
 
   useEffect(() => {
     const storeTodos = store.get('todos');
-    if (storeTodos) {
-      const sortedTodos = [...storeTodos].sort((a: ITodo, b: ITodo) => {
+    if (!storeTodos) {
+      return store.set('todos', todos);
+    }
+    const completedTodos = storeTodos.map((todo: ITodo) => {
+      if (!todo.dateCompleted) return todo;
+      const currentDate = new Date().getTime();
+      const millisecondDay = 24 * 60 * 60 * 1000;
+      const completedDate = new Date(todo.dateCompleted).getTime();
+      const diffDays = Math.round(
+        Math.abs(completedDate - currentDate) / millisecondDay
+      );
+      if (diffDays >= 7)
+        return {
+          ...todo,
+          dateCompleted: null,
+          complete: false,
+        };
+      return todo;
+    });
+    const sortedByCompletion = [...completedTodos].sort(
+      (a: ITodo, b: ITodo) => {
         if (a.complete === b.complete) return 0;
         return a.complete ? 1 : -1;
-      });
-      setTodos(sortedTodos);
-    } else {
-      store.set('todos', todos);
-    }
+      }
+    );
+    store.set('todos', sortedByCompletion);
+    return setTodos(sortedByCompletion);
     // eslint-disable-next-line
   }, []);
 
   const addTodo = useCallback(
     (id: string) => {
-      const newTodos = [...todos, { title: id, complete: false }];
+      const newTodos = [
+        ...todos,
+        { title: id, complete: false, dateCompleted: null },
+      ];
       setTodos(newTodos);
       store.set('todos', newTodos);
     },
@@ -59,6 +80,7 @@ export const TodosContextProvider = ({ children }: TodosContextProps) => {
           return {
             ...todo,
             complete: !isCompleted,
+            dateCompleted: isCompleted ? null : new Date(),
           };
         }
         return todo;
