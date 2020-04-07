@@ -28,6 +28,7 @@ export const EditTodo = ({ todo }: EditTodoProps) => {
         aria-label={`delete ${todo.title}`}
       >
         <TrashIcon />
+        &nbsp;Delete
       </button>
       {getDaysUntilReset()}
     </Wrap>
@@ -37,10 +38,16 @@ export const EditTodo = ({ todo }: EditTodoProps) => {
 const Wrap = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 8px;
+  margin-top: 8px;
+  grid-column: 2;
+  svg {
+    margin-bottom: 2px;
+  }
   button {
-    width: 45px;
-    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
   }
   p {
     color: rgba(0, 0, 0, 0.75);

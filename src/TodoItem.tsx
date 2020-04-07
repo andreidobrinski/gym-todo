@@ -44,18 +44,18 @@ export const TodoItem = ({ id }: TodoItemProps) => {
 };
 
 const Wrap = styled.li`
-  display: flex;
-  align-items: center;
   margin: 4px 0;
+  display: grid;
+  grid-template-columns: 37px 1fr;
+  align-items: center;
 `;
 
 const CheckButton = styled.button.attrs(() => ({
   type: 'button',
 }))`
   border-radius: 50%;
-  margin-right: 2px;
-  width: 36px;
-  height: 36px;
+  width: 37px;
+  height: 37px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -71,4 +71,5 @@ const TodoButton = styled.button.attrs(({ isComplete }: ITodoButton) => ({
 }))`
   background-color: transparent;
   text-decoration: ${(props) => props.isComplete && 'line-through'};
+  text-align: left;
 `;
