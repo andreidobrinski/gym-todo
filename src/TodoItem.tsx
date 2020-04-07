@@ -38,9 +38,7 @@ export const TodoItem = ({ id }: TodoItemProps) => {
       >
         {todo.title}
       </TodoButton>
-      {isSelected && (
-        <EditTodo todo={todo} onClose={() => setSelectedTodo('')} />
-      )}
+      {isSelected && <EditTodo todo={todo} />}
     </Wrap>
   );
 };
