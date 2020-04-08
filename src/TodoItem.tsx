@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { motion, AnimatePresence } from 'framer-motion';
 import { TodosContext } from './TodosContext';
 import { ITodo } from './ITodo';
 import { EditTodo } from './EditTodo';
@@ -22,11 +23,13 @@ export const TodoItem = ({ id }: TodoItemProps) => {
   const isComplete = todo.complete;
 
   return (
-    <Wrap>
+    <Wrap animate={{ y: 0, opacity: 1 }} initial={{ y: 16, opacity: 0 }}>
       <CheckButton
         onClick={() => toggleTodo(id)}
         aria-label={`checkbox for ${id}`}
         aria-pressed={isComplete}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.7 }}
       >
         {isComplete && <CheckmarkIcon />}
       </CheckButton>
@@ -38,19 +41,21 @@ export const TodoItem = ({ id }: TodoItemProps) => {
       >
         {todo.title}
       </TodoButton>
-      {isSelected && <EditTodo todo={todo} />}
+      <AnimatePresence>
+        {isSelected && <EditTodo todo={todo} />}
+      </AnimatePresence>
     </Wrap>
   );
 };
 
-const Wrap = styled.li`
+const Wrap = styled(motion.li)`
   margin: 4px 0;
   display: grid;
   grid-template-columns: 37px 1fr;
   align-items: center;
 `;
 
-const CheckButton = styled.button.attrs(() => ({
+const CheckButton = styled(motion.button).attrs(() => ({
   type: 'button',
 }))`
   border-radius: 50%;

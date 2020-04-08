@@ -1,5 +1,6 @@
 import React, { useContext, useCallback } from 'react';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 import { TodosContext } from './TodosContext';
 import { ITodo } from './ITodo';
 import { TrashIcon } from './assets/TrashIcon';
@@ -21,7 +22,12 @@ export const EditTodo = ({ todo }: EditTodoProps) => {
   }, [todo.dateCompleted]);
 
   return (
-    <Wrap>
+    <Wrap
+      key="edit-todo"
+      animate={{ y: 0, opacity: 1 }}
+      initial={{ y: -16, opacity: 0 }}
+      exit={{ y: -8, opacity: 0 }}
+    >
       <button
         onClick={() => deleteTodo(todo.title)}
         type="button"
@@ -35,7 +41,7 @@ export const EditTodo = ({ todo }: EditTodoProps) => {
   );
 };
 
-const Wrap = styled.div`
+const Wrap = styled(motion.div)`
   display: flex;
   align-items: center;
   margin-top: 8px;

@@ -1,4 +1,16 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+
+const icon = {
+  hidden: {
+    pathLength: 0,
+    fill: 'rgba(0, 0, 0, 0)',
+  },
+  visible: {
+    pathLength: 1,
+    fill: 'rgba(0, 0, 0, 1)',
+  },
+};
 
 export const CheckmarkIcon = () => (
   <svg
@@ -9,6 +21,11 @@ export const CheckmarkIcon = () => (
     role="img"
   >
     <title>checkmark</title>
-    <path d="M9 21.035l-9-8.638 2.791-2.87 6.156 5.874 12.21-12.436 2.843 2.817z" />
+    <motion.path
+      d="M9 21.035l-9-8.638 2.791-2.87 6.156 5.874 12.21-12.436 2.843 2.817z"
+      variants={icon}
+      initial="hidden"
+      animate="visible"
+    />
   </svg>
 );
