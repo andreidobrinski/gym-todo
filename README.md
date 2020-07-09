@@ -29,3 +29,4 @@ Also to practice TypeScript with React.
 - [x] Persist todo list in local storage
 - [x] Store date/time of completed tasks
 - [x] Uncheck todo after a week of being completed
+- [x] Customize todo repeat interval

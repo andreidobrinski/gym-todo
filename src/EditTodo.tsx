@@ -1,4 +1,4 @@
-import React, { useContext, useCallback } from 'react';
+import React, { useContext, useCallback, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { TodosContext } from './TodosContext';
@@ -11,15 +11,33 @@ interface EditTodoProps {
 }
 
 export const EditTodo = ({ todo }: EditTodoProps) => {
-  const { deleteTodo } = useContext(TodosContext);
+  const { deleteTodo, setTodoRepeat } = useContext(TodosContext);
+  const [repeatDays, setRepeatDays] = useState(todo.repeatInterval);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    const errorCondition = typeof repeatDays !== 'number' || repeatDays === 0;
+    if (errorCondition && !error) {
+      setError(true);
+    }
+    if (!errorCondition && error) {
+      setError(false);
+    }
+  }, [repeatDays, error]);
+
+  useEffect(() => {
+    const errorCondition = typeof repeatDays !== 'number' || repeatDays === 0;
+    if (!errorCondition && repeatDays !== todo.repeatInterval) {
+      setTodoRepeat(todo.title, repeatDays);
+    }
+  });
 
   const getDaysUntilReset = useCallback(() => {
     if (!todo.dateCompleted) return null;
-    const daysUntilReset = 7;
     const daysCompleted = getDiffDays(new Date(todo.dateCompleted).getTime());
-    const diffDays = daysUntilReset - daysCompleted;
+    const diffDays = todo.repeatInterval - daysCompleted;
     return <p>Resets in {diffDays} days</p>;
-  }, [todo.dateCompleted]);
+  }, [todo.dateCompleted, todo.repeatInterval]);
 
   return (
     <Wrap
@@ -36,6 +54,20 @@ export const EditTodo = ({ todo }: EditTodoProps) => {
         <TrashIcon />
         &nbsp;Delete
       </button>
+      {!todo.dateCompleted && (
+        <p>
+          Repeats every
+          <Input
+            type="number"
+            min="1"
+            step="1"
+            value={repeatDays}
+            onChange={(e) => setRepeatDays(Number(e.target.value))}
+          />
+          days
+        </p>
+      )}
+      {error && <p style={{ color: '#dc3545' }}>Days must be greater than 0</p>}
       {getDaysUntilReset()}
     </Wrap>
   );
@@ -60,4 +92,13 @@ const Wrap = styled(motion.div)`
     font-size: 16px;
     margin: 0 8px;
   }
+`;
+
+const Input = styled.input`
+  width: 40px;
+  margin-left: 4px;
+  margin-right: 4px;
+  border: none;
+  padding: 4px;
+  border-radius: 8px;
 `;

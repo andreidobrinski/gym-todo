@@ -21,6 +21,7 @@ interface ITodosContext {
   addTodo: Function;
   deleteTodo: Function;
   toggleTodo: Function;
+  setTodoRepeat: Function;
 }
 
 export const TodosContext = createContext({} as ITodosContext);
@@ -38,7 +39,7 @@ export const TodosContextProvider = ({ children }: TodosContextProps) => {
       if (!todo.dateCompleted) return todo;
       const diffDays = getDiffDays(new Date(todo.dateCompleted).getTime());
 
-      if (diffDays >= 7)
+      if (diffDays >= todo.repeatInterval)
         return {
           ...todo,
           dateCompleted: null,
@@ -61,7 +62,7 @@ export const TodosContextProvider = ({ children }: TodosContextProps) => {
     (id: string) => {
       const newTodos = [
         ...todos,
-        { title: id, complete: false, dateCompleted: null },
+        { title: id, complete: false, dateCompleted: null, repeatInterval: 7 },
       ];
       setTodos(newTodos);
       store.set('todos', newTodos);
@@ -78,6 +79,23 @@ export const TodosContextProvider = ({ children }: TodosContextProps) => {
             ...todo,
             complete: !isCompleted,
             dateCompleted: isCompleted ? null : new Date(),
+          };
+        }
+        return todo;
+      });
+      setTodos(newTodos);
+      store.set('todos', newTodos);
+    },
+    [todos]
+  );
+
+  const setTodoRepeat = useCallback(
+    (id: string, days: number) => {
+      const newTodos = todos.map((todo: ITodo) => {
+        if (todo.title === id) {
+          return {
+            ...todo,
+            repeatInterval: days,
           };
         }
         return todo;
@@ -105,9 +123,10 @@ export const TodosContextProvider = ({ children }: TodosContextProps) => {
       setSelectedTodo,
       addTodo,
       toggleTodo,
+      setTodoRepeat,
       deleteTodo,
     };
-  }, [todos, selectedTodo, addTodo, toggleTodo, deleteTodo]);
+  }, [todos, selectedTodo, addTodo, toggleTodo, setTodoRepeat, deleteTodo]);
 
   return (
     <TodosContext.Provider value={value}>{children}</TodosContext.Provider>
