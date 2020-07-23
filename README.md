@@ -16,6 +16,8 @@ Also to practice TypeScript with React.
 
 - React w/ Hooks and Context
 - TypeScript
+- Styled Components
+- Framer Motion
 
 ## Running locally
 
