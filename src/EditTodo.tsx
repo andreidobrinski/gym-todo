@@ -15,6 +15,7 @@ export const EditTodo = ({ todo }: EditTodoProps) => {
   const [repeatDays, setRepeatDays] = useState(todo.repeatInterval);
   const [error, setError] = useState(false);
 
+  // check for error condition and set error if condition exists
   useEffect(() => {
     const errorCondition = typeof repeatDays !== 'number' || repeatDays === 0;
     if (errorCondition && !error) {
@@ -25,6 +26,7 @@ export const EditTodo = ({ todo }: EditTodoProps) => {
     }
   }, [repeatDays, error]);
 
+  // set todo repeat interval if changed
   useEffect(() => {
     const errorCondition = typeof repeatDays !== 'number' || repeatDays === 0;
     if (!errorCondition && repeatDays !== todo.repeatInterval) {

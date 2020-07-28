@@ -30,6 +30,7 @@ export const TodosContextProvider = ({ children }: TodosContextProps) => {
   const [todos, setTodos] = useState<ITodo[]>([]);
   const [selectedTodo, setSelectedTodo] = useState('');
 
+  // update local storage and state with todos on mount, sorted by completion
   useEffect(() => {
     const storeTodos = store.get('todos');
     if (!storeTodos) {

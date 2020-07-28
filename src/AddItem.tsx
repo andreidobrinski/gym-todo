@@ -11,12 +11,14 @@ export const AddItem = () => {
   const [adding, setAdding] = useState(false);
   const [error, setError] = useState(false);
 
+  // set adding state to false if a todo is selected
   useEffect(() => {
     if (selectedTodo) {
       setAdding(false);
     }
   }, [selectedTodo]);
 
+  // set error true if new todo matches existing todo
   useEffect(() => {
     const duplicateTodo = todos.find((todo: ITodo) => todo.title === value);
     if (duplicateTodo) {
