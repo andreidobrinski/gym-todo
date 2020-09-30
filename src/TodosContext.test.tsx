@@ -4,15 +4,6 @@ import store from 'store';
 import { App } from './App';
 import { TodosContextProvider } from './TodosContext';
 
-const mockTodos = [
-  {
-    title: 'test',
-    complete: false,
-    dateCompleted: null,
-    repeatInterval: 7,
-  },
-];
-
 afterEach(() => {
   store.clearAll();
 });
@@ -26,9 +17,37 @@ describe('The TodosContext component', () => {
     );
 
   test('renders a todo from local storage', () => {
+    const mockTodos = [
+      {
+        title: 'test',
+        complete: false,
+        dateCompleted: null,
+        repeatInterval: 7,
+      },
+    ];
     store.set('todos', mockTodos);
     const { getByText } = setupApp();
 
     expect(getByText(mockTodos[0].title)).toBeInTheDocument();
+  });
+
+  test('unchecks a completed todo after the repeat interval', () => {
+    // create a date that is one day past the repeat interval
+    const dateCompleted = new Date();
+    dateCompleted.setDate(dateCompleted.getDate() - 8);
+
+    const mockTodos = [
+      {
+        title: 'test',
+        complete: true,
+        dateCompleted,
+        repeatInterval: 7,
+      },
+    ];
+
+    store.set('todos', mockTodos);
+    const { getByRole } = setupApp();
+
+    expect(getByRole('checkbox')).not.toBeChecked();
   });
 });
