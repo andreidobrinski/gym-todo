@@ -47,10 +47,14 @@ describe('The TodoItem component', () => {
       },
     ];
     store.set('todos', mockTodos);
-    const { getByRole } = setupApp();
+    const { getByRole, getByText } = setupApp();
 
     const checkbox = getByRole('checkbox');
 
     expect(checkbox).toBeChecked();
+
+    expect(getByText(mockTodos[0].title)).toHaveStyle(
+      'text-decoration: line-through'
+    );
   });
 });
