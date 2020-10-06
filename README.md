@@ -32,3 +32,4 @@ Also to practice TypeScript with React.
 - [x] Store date/time of completed tasks
 - [x] Uncheck todo after a week of being completed
 - [x] Customize todo repeat interval
+- [x] Add testing
