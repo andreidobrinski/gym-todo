@@ -32,10 +32,7 @@ export const TodosContextProvider = ({ children }: TodosContextProps) => {
 
   // update local storage and state with todos on mount, sorted by completion
   useEffect(() => {
-    const storeTodos = store.get('todos');
-    if (!storeTodos) {
-      return store.set('todos', todos);
-    }
+    const storeTodos = store.get('todos') || todos;
     const completedTodos = storeTodos.map((todo: ITodo) => {
       if (!todo.dateCompleted) return todo;
       const diffDays = getDiffDays(new Date(todo.dateCompleted).getTime());

@@ -10,6 +10,7 @@ interface TodoItemProps {
   id: string;
 }
 
+// TODO: change CheckButton to be an accessible
 export const TodoItem = ({ id }: TodoItemProps) => {
   const { todos, selectedTodo, setSelectedTodo, toggleTodo } = useContext(
     TodosContext
@@ -27,7 +28,8 @@ export const TodoItem = ({ id }: TodoItemProps) => {
       <CheckButton
         onClick={() => toggleTodo(id)}
         aria-label={`checkbox for ${id}`}
-        aria-pressed={isComplete}
+        aria-checked={isComplete}
+        role="checkbox"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.7 }}
       >
