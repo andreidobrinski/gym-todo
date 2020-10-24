@@ -1,5 +1,6 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import store from 'store';
 import { App } from './App';
 import { TodosContextProvider } from './TodosContext';
@@ -32,7 +33,7 @@ describe('The TodoItem component', () => {
 
     expect(checkbox).not.toBeChecked();
 
-    fireEvent.click(checkbox);
+    userEvent.click(checkbox);
 
     expect(checkbox).toBeChecked();
   });

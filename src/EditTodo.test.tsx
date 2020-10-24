@@ -1,5 +1,6 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import store from 'store';
 import { App } from './App';
 import { TodosContextProvider } from './TodosContext';
@@ -31,11 +32,11 @@ describe('The EditTodo component', () => {
 
     const todo = getByText(mockTodos[0].title);
 
-    fireEvent.click(todo);
+    userEvent.click(todo);
 
     const deleteButton = getByRole('button', { name: /delete/i });
 
-    fireEvent.click(deleteButton);
+    userEvent.click(deleteButton);
 
     expect(todo).not.toBeInTheDocument();
   });

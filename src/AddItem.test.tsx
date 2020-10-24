@@ -1,5 +1,6 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import store from 'store';
 import { App } from './App';
 import { TodosContextProvider } from './TodosContext';
@@ -19,13 +20,11 @@ describe('The AddItem component', () => {
   test('renders a new todo', () => {
     const { getByText, getByLabelText, getByRole } = setupApp();
 
-    fireEvent.click(getByText(/add todo/i));
+    userEvent.click(getByText(/add todo/i));
 
-    fireEvent.change(getByLabelText('add new todo'), {
-      target: { value: 'test todo' },
-    });
+    userEvent.type(getByLabelText('add new todo'), 'test todo');
 
-    fireEvent.click(getByText(/add/i));
+    userEvent.click(getByText(/add/i));
 
     expect(getByRole('listitem')).toBeInTheDocument();
     expect(getByText('test todo')).toBeInTheDocument();
