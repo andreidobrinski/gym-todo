@@ -1,4 +1,4 @@
-![logo](./icon.png)
+![demo gif](./gym-todo.gif)
 
 # Gym Todo
 
@@ -33,3 +33,5 @@ Also to practice TypeScript with React.
 - [x] Uncheck todo after a week of being completed
 - [x] Customize todo repeat interval
 - [x] Add testing
+
+![logo](./icon.png)
