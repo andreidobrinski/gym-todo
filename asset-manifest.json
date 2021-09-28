@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/gym-todo/static/css/main.6d416c0f.chunk.css",
-    "main.js": "/gym-todo/static/js/main.eeca4234.chunk.js",
-    "main.js.map": "/gym-todo/static/js/main.eeca4234.chunk.js.map",
-    "runtime-main.js": "/gym-todo/static/js/runtime-main.52df5b97.js",
-    "runtime-main.js.map": "/gym-todo/static/js/runtime-main.52df5b97.js.map",
-    "static/js/2.f5b18c44.chunk.js": "/gym-todo/static/js/2.f5b18c44.chunk.js",
-    "static/js/2.f5b18c44.chunk.js.map": "/gym-todo/static/js/2.f5b18c44.chunk.js.map",
+    "main.js": "/gym-todo/static/js/main.165e0020.chunk.js",
+    "main.js.map": "/gym-todo/static/js/main.165e0020.chunk.js.map",
+    "runtime-main.js": "/gym-todo/static/js/runtime-main.8bed6c9c.js",
+    "runtime-main.js.map": "/gym-todo/static/js/runtime-main.8bed6c9c.js.map",
+    "static/js/2.c6216f14.chunk.js": "/gym-todo/static/js/2.c6216f14.chunk.js",
+    "static/js/2.c6216f14.chunk.js.map": "/gym-todo/static/js/2.c6216f14.chunk.js.map",
     "index.html": "/gym-todo/index.html",
-    "precache-manifest.fe8e6e5472e523a9cc34918d28823140.js": "/gym-todo/precache-manifest.fe8e6e5472e523a9cc34918d28823140.js",
+    "precache-manifest.7daf7391f410426bb83bd0cb2919700a.js": "/gym-todo/precache-manifest.7daf7391f410426bb83bd0cb2919700a.js",
     "service-worker.js": "/gym-todo/service-worker.js",
     "static/css/main.6d416c0f.chunk.css.map": "/gym-todo/static/css/main.6d416c0f.chunk.css.map",
-    "static/js/2.f5b18c44.chunk.js.LICENSE.txt": "/gym-todo/static/js/2.f5b18c44.chunk.js.LICENSE.txt"
+    "static/js/2.c6216f14.chunk.js.LICENSE.txt": "/gym-todo/static/js/2.c6216f14.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.52df5b97.js",
-    "static/js/2.f5b18c44.chunk.js",
+    "static/js/runtime-main.8bed6c9c.js",
+    "static/js/2.c6216f14.chunk.js",
     "static/css/main.6d416c0f.chunk.css",
-    "static/js/main.eeca4234.chunk.js"
+    "static/js/main.165e0020.chunk.js"
   ]
 }
