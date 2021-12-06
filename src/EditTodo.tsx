@@ -13,23 +13,10 @@ interface EditTodoProps {
 export const EditTodo = ({ todo }: EditTodoProps) => {
   const { deleteTodo, setTodoRepeat } = useContext(TodosContext);
   const [repeatDays, setRepeatDays] = useState(todo.repeatInterval);
-  const [error, setError] = useState(false);
-
-  // check for error condition and set error if condition exists
-  useEffect(() => {
-    const errorCondition = typeof repeatDays !== 'number' || repeatDays === 0;
-    if (errorCondition && !error) {
-      setError(true);
-    }
-    if (!errorCondition && error) {
-      setError(false);
-    }
-  }, [repeatDays, error]);
 
   // set todo repeat interval if changed
   useEffect(() => {
-    const errorCondition = typeof repeatDays !== 'number' || repeatDays === 0;
-    if (!errorCondition && repeatDays !== todo.repeatInterval) {
+    if (repeatDays !== todo.repeatInterval) {
       setTodoRepeat(todo.title, repeatDays);
     }
   });
@@ -69,7 +56,6 @@ export const EditTodo = ({ todo }: EditTodoProps) => {
           days
         </p>
       )}
-      {error && <p style={{ color: '#dc3545' }}>Days must be greater than 0</p>}
       {getDaysUntilReset()}
     </Wrap>
   );
