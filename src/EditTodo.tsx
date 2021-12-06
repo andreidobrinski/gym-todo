@@ -47,13 +47,13 @@ export const EditTodo = ({ todo }: EditTodoProps) => {
         <p>
           Repeats every
           <Input
-            type="number"
+            type="tel"
             min="1"
             step="1"
             value={repeatDays}
             onChange={(e) => setRepeatDays(Number(e.target.value))}
           />
-          days
+          day{repeatDays === 1 ? '' : 's'}
         </p>
       )}
       {getDaysUntilReset()}
