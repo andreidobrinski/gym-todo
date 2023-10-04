@@ -58,6 +58,7 @@ export const AddItem = () => {
           onClick={() => {
             addTodo(value);
             setValue('');
+            setAdding(false);
           }}
           disabled={value === ''}
         >
