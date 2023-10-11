@@ -50,6 +50,7 @@ export const AddItem = () => {
         onChange={(e) => setValue(e.target.value)}
         type="text"
         aria-label="add new todo"
+        autoFocus
       />
       {error ? (
         <div>Todo already exists</div>
