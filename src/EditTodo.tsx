@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { TodosContext } from './TodosContext';
 import { ITodo } from './ITodo';
 import { TrashIcon } from './assets/TrashIcon';
+import { ArrowUpIcon } from './assets/ArrowUpIcon';
 import { getDiffDays } from './helper';
 
 interface EditTodoProps {
@@ -11,7 +12,7 @@ interface EditTodoProps {
 }
 
 export const EditTodo = ({ todo }: EditTodoProps) => {
-  const { deleteTodo, setTodoRepeat } = useContext(TodosContext);
+  const { deleteTodo, setTodoRepeat, moveTodoToTop } = useContext(TodosContext);
   const [repeatDays, setRepeatDays] = useState(todo.repeatInterval);
 
   // set todo repeat interval if changed
@@ -36,12 +37,12 @@ export const EditTodo = ({ todo }: EditTodoProps) => {
       exit={{ y: -8, opacity: 0 }}
     >
       <button
-        onClick={() => deleteTodo(todo.title)}
+        onClick={() => moveTodoToTop(todo.title)}
         type="button"
-        aria-label={`delete ${todo.title}`}
+        aria-label={`move ${todo.title} to top`}
+        style={{ marginRight: '4px' }}
       >
-        <TrashIcon />
-        &nbsp;Delete
+        <ArrowUpIcon />
       </button>
       {!todo.dateCompleted && (
         <p>
@@ -56,6 +57,13 @@ export const EditTodo = ({ todo }: EditTodoProps) => {
           day{repeatDays === 1 ? '' : 's'}
         </p>
       )}
+      <button
+        onClick={() => deleteTodo(todo.title)}
+        type="button"
+        aria-label={`delete ${todo.title}`}
+      >
+        <TrashIcon />
+      </button>
       {getDaysUntilReset()}
     </Wrap>
   );

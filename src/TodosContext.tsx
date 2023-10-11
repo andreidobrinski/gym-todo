@@ -22,6 +22,7 @@ interface ITodosContext {
   deleteTodo: Function;
   toggleTodo: Function;
   setTodoRepeat: Function;
+  moveTodoToTop: Function;
 }
 
 export const TodosContext = createContext({} as ITodosContext);
@@ -113,6 +114,21 @@ export const TodosContextProvider = ({ children }: TodosContextProps) => {
     [todos]
   );
 
+  const moveTodoToTop = useCallback(
+    (id: string) => {
+      const topTodo = todos.find((todo: ITodo) => todo.title === id);
+      const todosWithoutSelected = todos.filter(
+        (todo: ITodo) => todo.title !== id
+      );
+      if (!topTodo) return todos;
+      const newTodos = [topTodo, ...todosWithoutSelected];
+      setTodos(newTodos);
+      setSelectedTodo('');
+      store.set('todos', newTodos);
+    },
+    [todos]
+  );
+
   const value: ITodosContext = useMemo(() => {
     return {
       todos,
@@ -123,8 +139,17 @@ export const TodosContextProvider = ({ children }: TodosContextProps) => {
       toggleTodo,
       setTodoRepeat,
       deleteTodo,
+      moveTodoToTop,
     };
-  }, [todos, selectedTodo, addTodo, toggleTodo, setTodoRepeat, deleteTodo]);
+  }, [
+    todos,
+    selectedTodo,
+    addTodo,
+    toggleTodo,
+    setTodoRepeat,
+    deleteTodo,
+    moveTodoToTop,
+  ]);
 
   return (
     <TodosContext.Provider value={value}>{children}</TodosContext.Provider>
