@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "5ff9acc153092253b231749030958ea0",
+    "revision": "f37148940fcafb810f1b1e4d0e06fda1",
     "url": "/gym-todo/index.html"
   },
   {
-    "revision": "73164987f454841914d7",
+    "revision": "420f19906038a11bbc24",
     "url": "/gym-todo/static/css/main.8abfb79a.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/gym-todo/static/js/2.3d9b1597.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "73164987f454841914d7",
-    "url": "/gym-todo/static/js/main.33ccd389.chunk.js"
+    "revision": "420f19906038a11bbc24",
+    "url": "/gym-todo/static/js/main.38e8e863.chunk.js"
   },
   {
     "revision": "a6a8331e77eb9b42a6d9",
