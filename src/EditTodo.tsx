@@ -5,7 +5,7 @@ import { TodosContext } from './TodosContext';
 import { ITodo } from './ITodo';
 import { TrashIcon } from './assets/TrashIcon';
 import { ArrowUpIcon } from './assets/ArrowUpIcon';
-import { getDiffDays } from './helper';
+import { getDiffDays, getDaysString } from './helper';
 
 interface EditTodoProps {
   todo: ITodo;
@@ -26,7 +26,7 @@ export const EditTodo = ({ todo }: EditTodoProps) => {
     if (!todo.dateCompleted) return null;
     const daysCompleted = getDiffDays(new Date(todo.dateCompleted).getTime());
     const diffDays = todo.repeatInterval - daysCompleted;
-    return <p>Resets in {diffDays} days</p>;
+    return <p>Resets in {getDaysString(diffDays)}</p>;
   }, [todo.dateCompleted, todo.repeatInterval]);
 
   return (
@@ -54,7 +54,7 @@ export const EditTodo = ({ todo }: EditTodoProps) => {
             value={repeatDays}
             onChange={(e) => setRepeatDays(Number(e.target.value))}
           />
-          day{repeatDays === 1 ? '' : 's'}
+          {getDaysString(repeatDays)}
         </p>
       )}
       <button
