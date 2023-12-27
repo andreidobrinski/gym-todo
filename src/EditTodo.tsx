@@ -26,7 +26,11 @@ export const EditTodo = ({ todo }: EditTodoProps) => {
     if (!todo.dateCompleted) return null;
     const daysCompleted = getDiffDays(new Date(todo.dateCompleted).getTime());
     const diffDays = todo.repeatInterval - daysCompleted;
-    return <p>Resets in {getDaysString(diffDays)}</p>;
+    return (
+      <p>
+        Resets in {diffDays} {getDaysString(diffDays)}
+      </p>
+    );
   }, [todo.dateCompleted, todo.repeatInterval]);
 
   return (
