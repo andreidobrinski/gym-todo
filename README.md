@@ -27,11 +27,17 @@ Also to practice TypeScript with React.
 
 ## Progress
 
+### Core
+
 - [x] Basic CRUD: add, delete, check/uncheck todos
 - [x] Persist todo list in local storage
 - [x] Store date/time of completed tasks
 - [x] Uncheck todo after a week of being completed
-- [x] Customize todo repeat interval
 - [x] Add testing
+
+### Bonus
+
+- [x] Customize todo repeat interval
+- [x] Add feature to move list item to top
 
 ![logo](./icon.png)
