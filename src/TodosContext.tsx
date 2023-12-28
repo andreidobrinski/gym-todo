@@ -25,6 +25,18 @@ interface ITodosContext {
   moveTodoToTop: Function;
 }
 
+/**
+ * Stores todos in local storage. Removes `todo.isToday` if exists.
+ */
+function saveTodos(todos: Array<ITodo>) {
+  const formattedTodos = todos.map((todo) => {
+    // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+    const { isToday, ...restOfTodo } = todo;
+    return restOfTodo;
+  });
+  store.set('todos', formattedTodos);
+}
+
 export const TodosContext = createContext({} as ITodosContext);
 
 export const TodosContextProvider = ({ children }: TodosContextProps) => {
@@ -64,7 +76,7 @@ export const TodosContextProvider = ({ children }: TodosContextProps) => {
         { title: id, complete: false, dateCompleted: null, repeatInterval: 7 },
       ];
       setTodos(newTodos);
-      store.set('todos', newTodos);
+      saveTodos(newTodos);
     },
     [todos]
   );
@@ -83,7 +95,7 @@ export const TodosContextProvider = ({ children }: TodosContextProps) => {
         return todo;
       });
       setTodos(newTodos);
-      store.set('todos', newTodos);
+      saveTodos(newTodos);
     },
     [todos]
   );
@@ -100,7 +112,7 @@ export const TodosContextProvider = ({ children }: TodosContextProps) => {
         return todo;
       });
       setTodos(newTodos);
-      store.set('todos', newTodos);
+      saveTodos(newTodos);
     },
     [todos]
   );
@@ -109,7 +121,7 @@ export const TodosContextProvider = ({ children }: TodosContextProps) => {
     (id: string) => {
       const newTodos = todos.filter((todo: ITodo) => todo.title !== id);
       setTodos(newTodos);
-      store.set('todos', newTodos);
+      saveTodos(newTodos);
     },
     [todos]
   );
@@ -121,10 +133,10 @@ export const TodosContextProvider = ({ children }: TodosContextProps) => {
         (todo: ITodo) => todo.title !== id
       );
       if (!topTodo) return todos;
-      const newTodos = [topTodo, ...todosWithoutSelected];
-      setTodos(newTodos);
+      const newTodos = [{ ...topTodo, isToday: true }, ...todosWithoutSelected];
       setSelectedTodo('');
-      store.set('todos', newTodos);
+      setTodos(newTodos);
+      saveTodos(newTodos);
     },
     [todos]
   );

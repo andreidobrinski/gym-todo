@@ -3,4 +3,5 @@ export interface ITodo {
   complete: boolean;
   dateCompleted: Date | null;
   repeatInterval: number;
+  isToday?: boolean;
 }
